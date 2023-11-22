@@ -30,7 +30,7 @@ spec:
           mountPath: /etc/ssh/sshd_config
           subPath: sshd_config
       {{- range $name, $key := .Values.sshd.host_keys }}
-        - name: sshd-config
+        - name: sshd-keys
           mountPath: /etc/ssh/ssh_host_{{ $name }}_key
           subPath: ssh_host_{{ $name }}_key
       {{- end }}
@@ -53,4 +53,8 @@ spec:
       - name: access-config
         configMap:
           name: {{ .Release.Name }}-access-config
+          defaultMode: 0600
+      - name: sshd-keys
+        secret:
+          secretName: {{ .Release.Name }}-sshd-keys
           defaultMode: 0600

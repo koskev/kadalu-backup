@@ -59,14 +59,9 @@ for private_key_file in "${private_key_dir}"/ssh_host_*_key; do
     # Generate public key file name
     public_key_file="${private_key_file}.pub"
 
-    # Check if the public key file already exists
-    if [ -f "${public_key_file}" ]; then
-      echo "Public key file already exists: ${public_key_file}"
-    else
-      # Generate public key
-      ssh-keygen -y -f "${private_key_file}" > "${public_key_file}"
-      echo "Generated public key: ${public_key_file}"
-    fi
+    # Generate public key and ignore existing ones
+    ssh-keygen -y -f "${private_key_file}" > "${public_key_file}"
+    echo "Generated public key: ${public_key_file}"
   fi
 done
 

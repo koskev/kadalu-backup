@@ -14,10 +14,15 @@ data:
     AcceptEnv LANG LC_*
     Subsystem	sftp	/usr/lib/openssh/sftp-server
     ChrootDirectory /kadalu
+  {{- range $name, $key := .Values.sshd.host_keys }}
+    HostKey /etc/ssh/ssh_host_{{ $name }}_key
+
+  {{- end }}
 
 {{- range $name, $key := .Values.sshd.host_keys }}
   ssh_host_{{ $name }}_key: |-
     {{ $key | indent 4 | trim }}
+
 {{- end }}
 
 ---
