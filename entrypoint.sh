@@ -78,4 +78,4 @@ echo "Name: $name"
 mkdir -p /kadalu/${name}
 
 mount -t glusterfs ${host}:/${name} /kadalu/${name}
-/usr/sbin/sshd -D
+/usr/sbin/sshd -D -E /ssh.log
