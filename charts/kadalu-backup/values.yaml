@@ -16,6 +16,9 @@ service:
 sshd:
   # Complete content of your id_rsa.pub
   authorized_keys: []
-  # Host keys you want to provide. Ensure that the key ends with a newline!
-  # <algorithm>: |- <key in base64>
-  host_keys: {}
+
+  # Name and entries in a secret
+  host_key_secret: {}
+  #  name: "kadalu-backup-keys"
+  #  keys:
+  #    - ed25519
