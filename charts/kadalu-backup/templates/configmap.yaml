@@ -12,7 +12,8 @@ data:
     PasswordAuthentication no
     PrintMotd no
     AcceptEnv LANG LC_*
-    Subsystem	sftp	/usr/lib/openssh/sftp-server
+    Subsystem sftp internal-sftp
+    ForceCommand internal-sftp
     ChrootDirectory /kadalu
   {{- range $name, $key := .Values.sshd.host_keys }}
     HostKey /etc/ssh/ssh_host_{{ $name }}_key
@@ -35,5 +36,5 @@ data:
   authorized_keys: |-
     {{- $pool_name  := .Values.pool_name -}}
     {{- range $key := .Values.sshd.authorized_keys }}
-      command="/usr/lib/openssh/sftp-server",restrict {{ $key }}
+      restrict {{ $key }}
     {{- end }}
