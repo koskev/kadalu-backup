@@ -32,7 +32,6 @@ spec:
       {{- range $name := .Values.sshd.host_key_secret.keys }}
         - name: sshd-keys
           mountPath: /etc/ssh/ssh_host_{{ $name }}_key
-          subPath: ssh_host_{{ $name }}_key
           subPath: {{ $name }}
       {{- end }}
         - name: access-config
