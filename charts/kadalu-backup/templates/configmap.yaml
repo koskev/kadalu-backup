@@ -13,8 +13,7 @@ data:
     PrintMotd no
     AcceptEnv LANG LC_*
     Subsystem	sftp	/usr/lib/openssh/sftp-server
-    Match user kadalu
-      ChrootDirectory /kadalu
+    ChrootDirectory /kadalu
 
 {{- range $name, $key := .Values.sshd.host_keys }}
   ssh_host_{{ $name }}_key: |-

@@ -35,7 +35,7 @@ spec:
           subPath: ssh_host_{{ $name }}_key
       {{- end }}
         - name: access-config
-          mountPath: /home/kadalu/.ssh/authorized_keys
+          mountPath: /root/.ssh/authorized_keys
           subPath: authorized_keys
         - name: fuse
           mountPath: /dev/fuse

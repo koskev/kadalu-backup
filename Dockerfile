@@ -11,6 +11,5 @@ EXPOSE 22
 COPY entrypoint.sh /
 
 RUN mkdir -p /run/sshd
-RUN groupadd -r kadalu && useradd -r -g kadalu -m kadalu
 
 ENTRYPOINT ["/entrypoint.sh"]
