@@ -14,8 +14,8 @@ service:
   type: LoadBalancer
 
 sshd:
-  authorized_keys:
-    - "ssh-rsa asdkljasd key1"
-    - "ssh-rsa aasdsdkljasd key2"
-  host_keys:
-    ecdsa: "ecda key"
+  # Complete content of your id_rsa.pub
+  authorized_keys: {}
+  # Host keys you want to provide.
+  # <algorithm>: |- <key>
+  host_keys: []

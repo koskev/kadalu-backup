@@ -27,6 +27,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   authorized_keys: |-
+    {{- $pool_name  := .Values.pool_name -}}
     {{- range $key := .Values.sshd.authorized_keys }}
-      {{ $key }}
+      command="borg serve --restrict-to-path /kadalu/{{ $pool_name }}",restrict {{ $key }}
     {{- end }}

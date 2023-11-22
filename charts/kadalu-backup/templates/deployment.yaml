@@ -27,9 +27,16 @@ spec:
           privileged: true
         volumeMounts:
         - name: sshd-config
-          mountPath: /etc/ssh
+          mountPath: /etc/ssh/sshd_config
+          subPath: sshd_config
+      {{- range $name, $key := .Values.sshd.host_keys }}
+        - name: sshd-config
+          mountPath: /etc/ssh/ssh_host_{{ $name }}_key
+          subPath: ssh_host_{{ $name }}_key
+      {{- end }}
         - name: access-config
-          mountPath: /root/.ssh
+          mountPath: /root/.ssh/authorized_keys
+          subPath: authorized_keys
         - name: fuse
           mountPath: /dev/fuse
         resources:
@@ -46,3 +53,4 @@ spec:
       - name: access-config
         configMap:
           name: {{ .Release.Name }}-access-config
+          defaultMode: 0600

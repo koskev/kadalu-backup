@@ -75,6 +75,7 @@ echo "Host: $host"
 echo "Name: $name"
 
 
+mkdir -p /kadalu/${name}
 
-mount -t glusterfs ${host}:/${name} /mnt
+mount -t glusterfs ${host}:/${name} /kadalu/${name}
 /usr/sbin/sshd -D
