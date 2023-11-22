@@ -18,6 +18,11 @@ spec:
       - name: kadalu-backup
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        args:
+          - "--host"
+          - "{{ .Values.pool_name }}"
+          - "--name"
+          - "{{ .Values.pool_name }}"
         securityContext:
           privileged: true
         volumeMounts:
