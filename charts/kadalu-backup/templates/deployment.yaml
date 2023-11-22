@@ -29,9 +29,8 @@ spec:
         - name: sshd-config
           mountPath: /etc/ssh/sshd_config
           subPath: sshd_config
-      {{- $secret_name  := .Values.sshd.host_key_secret.name}}
       {{- range $name := .Values.sshd.host_key_secret.keys }}
-        - name: {{ $secret_name }}
+        - name: sshd-keys
           mountPath: /etc/ssh/ssh_host_{{ $name }}_key
           subPath: {{ $name }}
       {{- end }}
@@ -57,5 +56,5 @@ spec:
           defaultMode: 0600
       - name: sshd-keys
         secret:
-          secretName: {{ .Values.sshd.host_keys_secret_name }}
+          secretName: {{ .Values.sshd.host_key_secret.name }}
           defaultMode: 0600
