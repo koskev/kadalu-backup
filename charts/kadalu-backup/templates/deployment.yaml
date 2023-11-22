@@ -30,17 +30,19 @@ spec:
           mountPath: /etc/ssh
         - name: access-config
           mountPath: /root/.ssh
-        - name:
+        - name: fuse
           mountPath: /dev/fuse
         resources:
           requests:
             memory: "128Mi"
       volumes:
       - name: fuse
-        hostPath: /dev/fuse
+        hostPath:
+          path: /dev/fuse
       - name: sshd-config
         configMap:
           name: {{ .Release.Name }}-sshd-config
+          defaultMode: 0600
       - name: access-config
         configMap:
           name: {{ .Release.Name }}-access-config

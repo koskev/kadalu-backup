@@ -4,6 +4,8 @@
 host=""
 name=""
 
+private_key_dir="/etc/ssh"
+
 # Function to display script usage
 usage() {
     echo "Usage: $0 -h|--host <host> -n|--name <name>"
@@ -44,9 +46,35 @@ if [ -z "$host" ] || [ -z "$name" ]; then
     usage
 fi
 
+
+# Check if the directory exists
+if [ ! -d "$private_key_dir" ]; then
+  echo "Directory does not exist: $private_key_dir"
+  exit 1
+fi
+
+for private_key_file in "${private_key_dir}"/ssh_host_*_key; do
+  # Check if the private key is a file
+  if [ -f "${private_key_file}" ]; then
+    # Generate public key file name
+    public_key_file="${private_key_file}.pub"
+
+    # Check if the public key file already exists
+    if [ -f "${public_key_file}" ]; then
+      echo "Public key file already exists: ${public_key_file}"
+    else
+      # Generate public key
+      ssh-keygen -y -f "${private_key_file}" > "${public_key_file}"
+      echo "Generated public key: ${public_key_file}"
+    fi
+  fi
+done
+
 # Display the provided arguments
 echo "Host: $host"
 echo "Name: $name"
+
+
 
 mount -t glusterfs ${host}:/${name} /mnt
 /usr/sbin/sshd -D

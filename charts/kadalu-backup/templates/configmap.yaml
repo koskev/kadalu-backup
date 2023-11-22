@@ -15,7 +15,8 @@ data:
     Subsystem	sftp	/usr/lib/openssh/sftp-server
 
 {{- range $name, $key := .Values.sshd.host_keys }}
-  ssh_host_{{ $name }}_key: {{ $key }}
+  ssh_host_{{ $name }}_key: |-
+    {{ $key | indent 4 | trim }}
 {{- end }}
 
 ---
@@ -23,6 +24,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-access-config
+  namespace: {{ .Values.namespace }}
 data:
   authorized_keys: |-
     {{- range $key := .Values.sshd.authorized_keys }}
