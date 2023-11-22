@@ -29,8 +29,9 @@ spec:
         - name: sshd-config
           mountPath: /etc/ssh/sshd_config
           subPath: sshd_config
+      {{- $secret_name  := .Values.sshd.host_key_secret.name}}
       {{- range $name := .Values.sshd.host_key_secret.keys }}
-        - name: sshd-keys
+        - name: {{ $secret_name }}
           mountPath: /etc/ssh/ssh_host_{{ $name }}_key
           subPath: {{ $name }}
       {{- end }}
