@@ -3,6 +3,16 @@ entries:
   kadalu-backup:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-11-22T19:55:29.285032969Z"
+    description: A Helm chart for Kubernetes
+    digest: f9949c7c6ac26b3b49b67e6024da13d7dd23952abc4dfbac76650186d5fc2998
+    name: kadalu-backup
+    type: application
+    urls:
+    - https://github.com/koskev/kadalu-backup/releases/download/kadalu-backup-0.1.4/kadalu-backup-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-11-22T19:04:03.963163393Z"
     description: A Helm chart for Kubernetes
     digest: fc4c6adf503b0897d73e88011895cd7833caccefebfb87f5ba5ee486dc646a4b
@@ -41,4 +51,4 @@ entries:
     urls:
     - https://github.com/koskev/kadalu-backup/releases/download/kadalu-backup-0.1.0/kadalu-backup-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-22T19:04:03.963189481Z"
+generated: "2023-11-22T19:55:29.285053157Z"
