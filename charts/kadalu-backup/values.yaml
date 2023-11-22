@@ -15,7 +15,7 @@ service:
 
 sshd:
   # Complete content of your id_rsa.pub
-  authorized_keys: {}
+  authorized_keys: []
   # Host keys you want to provide.
   # <algorithm>: |- <key>
-  host_keys: []
+  host_keys: {}
